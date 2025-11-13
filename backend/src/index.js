@@ -15,7 +15,7 @@ const internshipRoutes = require("./routes/internships");
 app.use("/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/events", eventRoutes);
-app.use("/api/internships", internshipRoutes); // <-- PERBAIKAN: Tambahkan 's'
+app.use("/api/internships", internshipRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend Running ✅");

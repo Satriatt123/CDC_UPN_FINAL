@@ -58,20 +58,15 @@ export default function App() {
     }
   };
 
-  // Fungsi untuk menangani login sukses dari komponen SignIn
   const handleSignInSuccess = (userData: User, token: string) => {
-    // 1. Simpan data ke localStorage
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('token', token);
     
-    // 2. Simpan data ke state
     setCurrentUser(userData);
     
-    // 3. Arahkan ke halaman utama (home)
     setCurrentPage('home'); 
   };
 
-  // Fungsi untuk merender halaman berdasarkan state 'currentPage'
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
@@ -126,7 +121,6 @@ export default function App() {
     }
   };
 
-  // Jangan tampilkan Header/Footer di halaman login/register
   const showHeaderFooter = currentPage !== 'signin' && currentPage !== 'register';
 
   return (
@@ -140,7 +134,6 @@ export default function App() {
         />
       )}
       
-      {/* Render halaman yang aktif */}
       {renderPage()}
       
       {showHeaderFooter && <Footer onNavigate={handleNavigate} />}

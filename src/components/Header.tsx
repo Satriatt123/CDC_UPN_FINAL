@@ -1,4 +1,3 @@
-// 1. ArrowLeft dihapus dari import karena tidak digunakan lagi
 import { Search, LogOut } from 'lucide-react'; 
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -22,8 +21,6 @@ export function Header({ currentPage, onNavigate, currentUser, onSignOut }: Head
             <img src="src/assets/UPA_PKK__2_-removebg-preview.png" alt="Logo" className="h-12" />
           </div>
 
-          {/* Navigasi (Hanya tampil di 'home') */}
-          {/* Tombol 'Kembali' (else block) telah dihapus */}
           {currentPage === 'home' && (
             <nav className="hidden md:flex items-center gap-8">
               <button 
@@ -53,7 +50,6 @@ export function Header({ currentPage, onNavigate, currentUser, onSignOut }: Head
             </nav>
           )}
 
-          {/* Search dan Auth (LOGIKA BARU) */}
           <div className="flex items-center gap-3">
             <div className="relative hidden lg:block">
               <Input 
@@ -80,7 +76,6 @@ export function Header({ currentPage, onNavigate, currentUser, onSignOut }: Head
                 </Button>
               </>
             ) : (
-              // --- TAMPILAN JIKA BELUM LOGIN ---
               <>
                 <Button
                   onClick={() => onNavigate('signin')}

@@ -11,18 +11,15 @@ interface SignInProps {
 
 type UserType = 'mahasiswa' | 'alumni' | 'umum' | null;
 
-// URL Backend Anda
 const API_URL = 'http://localhost:5000';
 
 export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
   const [selectedType, setSelectedType] = useState<UserType>(null);
 
-  // --- State untuk Form Login ---
-  const [identifier, setIdentifier] = useState(''); // NIM atau Email
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  // ------------------------------
 
   const userTypes = [
     {
@@ -48,7 +45,6 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
     }
   ];
 
-  // --- Fungsi Handle Sign In (Sudah di-update untuk memanggil API) ---
   const handleSignIn = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -69,21 +65,16 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
       const data = await response.json();
 
       if (!response.ok) {
-        // Jika status kode 400 atau 404, tampilkan error dari backend
         throw new Error(data.error || 'Login gagal. Silakan coba lagi.');
       }
 
-      // --- LOGIN BERHASIL ---
-      // 1. Simpan token dan data pengguna di localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      // 2. Arahkan ke Halaman Home
       alert('Login berhasil! Selamat datang.');
       onNavigate('home');
 
     } catch (err: any) {
-      // Tangkap dan tampilkan error
       setError(err.message);
     } finally {
       setLoading(false);
@@ -91,7 +82,6 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
   };
 
   if (!selectedType) {
-    // Tampilan untuk memilih tipe akun
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center py-12 px-4">
           <div className="w-full max-w-4xl">
@@ -134,10 +124,8 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
 
   const currentUserType = userTypes.find(ut => ut.type === selectedType)!;
 
-  // Placeholder yang sesuai berdasarkan tipe akun
   const getPlaceholder = () => {
     if (selectedType === 'mahasiswa') return 'Masukkan NIM';
-    // Backend Anda di auth.js menerima NIM atau Email untuk alumni
     if (selectedType === 'alumni') return 'Masukkan NIM atau Email'; 
     return 'Masukkan Email';
   };
@@ -146,20 +134,18 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-xl p-8">
-          {/* Back button */}
           <button
             onClick={() => {
               setSelectedType(null);
-              setError(null); // Hapus error saat kembali
-              setIdentifier(''); // Reset identifier
-              setPassword(''); // Reset password
+              setError(null);
+              setIdentifier('');
+              setPassword('');
             }}
             className="text-gray-600 hover:text-gray-900 mb-6 flex items-center gap-2"
           >
             ← Kembali ke pilihan tipe akun
           </button>
 
-          {/* Header */}
           <div className="text-center mb-8">
             <div className={`w-16 h-16 ${currentUserType.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
               <currentUserType.icon className="w-8 h-8 text-white" />
@@ -168,7 +154,6 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
             <p className="text-gray-600">Sign in sebagai {currentUserType.title}</p>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSignIn} className="space-y-5">
             <div>
               <label className="block text-gray-700 mb-2">
@@ -202,7 +187,6 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
               </div>
             </div>
 
-            {/* Tampilkan Error */}
             {error && (
               <p className="text-red-500 text-sm text-center">{error}</p>
             )}
@@ -222,7 +206,6 @@ export function SignIn({ onNavigate, onSwitchToRegister }: SignInProps) {
             </Button>
           </form>
 
-          {/* Footer */}
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Belum punya akun?{' '}

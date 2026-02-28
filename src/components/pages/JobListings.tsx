@@ -17,7 +17,7 @@ interface Job {
   level: string;
   salary: string;
   description: string;
-  posted: string; // 'posted' sudah diformat oleh backend
+  posted: string;
 }
 
 interface JobListingsProps {
@@ -25,32 +25,28 @@ interface JobListingsProps {
 }
 
 export function JobListings({ onNavigate }: JobListingsProps) {
-  // 1. Hapus array 'jobs' yang lama
   
-  // 2. Buat state untuk data dari API
-  const [allJobs, setAllJobs] = useState<Job[]>([]); // Menyimpan data asli
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]); // Menyimpan data yang tampil
+  const [allJobs, setAllJobs] = useState<Job[]>([]);
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 3. State untuk filter
   const [searchQuery, setSearchQuery] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
   const [sortBy, setSortBy] = useState('Terbaru');
 
-  // 4. useEffect untuk mengambil (fetch) data dari API
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`${API_URL}/api/jobs`); // <-- Panggil API
+        const response = await fetch(`${API_URL}/api/jobs`);
         if (!response.ok) {
           throw new Error('Gagal mengambil data lowongan');
         }
         const data: Job[] = await response.json();
         setAllJobs(data); // Simpan data asli
-        setFilteredJobs(data); // Set data yang akan ditampilkan
+        setFilteredJobs(data); 
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -59,18 +55,16 @@ export function JobListings({ onNavigate }: JobListingsProps) {
     };
 
     fetchJobs();
-  }, []); // [] berarti hanya dijalankan sekali saat komponen dimuat
+  }, []); 
 
-  // 5. Helper function untuk sorting gaji (jika diperlukan)
   const parseSalary = (salary: string): number => {
     if (!salary) return 0;
     const minSalaryStr = salary.split(' - ')[0].replace('Rp ', '').replace(/\./g, '');
     return parseInt(minSalaryStr, 10) || 0;
   };
 
-  // 6. useEffect untuk memfilter dan mengurutkan data
   useEffect(() => {
-    let processedJobs = [...allJobs] // Mulai dengan data asli
+    let processedJobs = [...allJobs] 
       .filter(job => 
         (job.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
          job.company.toLowerCase().includes(searchQuery.toLowerCase())) &&
@@ -82,14 +76,12 @@ export function JobListings({ onNavigate }: JobListingsProps) {
     } else if (sortBy === 'Perusahaan A-Z') {
       processedJobs.sort((a, b) => a.company.localeCompare(b.company));
     }
-    // 'Terbaru' sudah di-handle oleh query SQL (ORDER BY created_at DESC)
 
     setFilteredJobs(processedJobs);
-  }, [searchQuery, searchLocation, sortBy, allJobs]); // Jalankan ulang saat filter atau data berubah
+  }, [searchQuery, searchLocation, sortBy, allJobs]);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Back Button */}
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -101,7 +93,6 @@ export function JobListings({ onNavigate }: JobListingsProps) {
         </div>
       )}
 
-      {/* Header Section */}
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl mb-4 text-center">Info Lowongan Kerja</h1>
@@ -109,7 +100,6 @@ export function JobListings({ onNavigate }: JobListingsProps) {
             Temukan peluang karir terbaik dari perusahaan-perusahaan terkemuka
           </p>
           
-          {/* Search Bar - Hubungkan ke state */}
           <div className="max-w-4xl mx-auto bg-white rounded-lg p-4 flex gap-4 flex-wrap">
             <div className="flex-1 min-w-[200px] relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -136,7 +126,6 @@ export function JobListings({ onNavigate }: JobListingsProps) {
         </div>
       </section>
 
-      {/* Job Listings */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="mb-6 flex justify-between items-center">
@@ -154,7 +143,6 @@ export function JobListings({ onNavigate }: JobListingsProps) {
             </select>
           </div>
 
-          {/* 7. Handle Loading dan Error */}
           {loading && <p className="text-center text-gray-600">Memuat data...</p>}
           {error && <p className="text-center text-red-500">{error}</p>}
           

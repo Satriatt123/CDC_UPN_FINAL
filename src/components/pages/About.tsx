@@ -1,8 +1,7 @@
 import { Target, Eye, Users, Award, Building2, TrendingUp, ArrowLeft } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { Page } from '../../App'; // <-- Ditambahkan
+import { Page } from '../../App';
 
-// Definisikan props
 interface AboutProps {
   onNavigate?: (page: Page) => void;
 }
@@ -21,11 +20,10 @@ const team = [
   { name: 'Wilis Kaswidjanti S.Si., M.Kom.', position: 'Koordinator Pelatihan & Workshop' }
 ];
 
-// Terima props 'onNavigate'
 export function About({ onNavigate }: AboutProps) {
   return (
     <div className="min-h-screen bg-white">
-      {/* Back Button */}
+
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -37,7 +35,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       )}
 
-      {/* Hero Section */}
+
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl mb-4">Tentang Career Center</h1>
@@ -47,7 +45,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Introduction */}
+
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -74,7 +72,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Vision & Mission */}
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
@@ -107,7 +105,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Statistics */}
+ 
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Pencapaian Kami</h2>
@@ -122,7 +120,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Team */}
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Tim Kami</h2>
@@ -140,7 +138,7 @@ export function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Partners */}
+
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Partner Industri Kami</h2>

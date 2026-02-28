@@ -50,12 +50,10 @@ const faqs = [
   }
 ];
 
-// 3. Tentukan interface Props
 interface ContactProps {
   onNavigate?: (page: Page) => void;
 }
 
-// 4. Ganti nama fungsi menjadi 'Contact' dan terima props
 export function Contact({ onNavigate }: ContactProps) {
   return (
     <div className="min-h-screen bg-white">
@@ -72,7 +70,6 @@ export function Contact({ onNavigate }: ContactProps) {
         </div>
       )}
 
-      {/* 6. Tambahkan KEMBALI Hero Section yang hilang */}
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl mb-4">Hubungi Kami</h1>
@@ -82,7 +79,6 @@ export function Contact({ onNavigate }: ContactProps) {
         </div>
       </section>
 
-      {/* Contact Info */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
@@ -98,7 +94,6 @@ export function Contact({ onNavigate }: ContactProps) {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <div className="bg-gray-50 p-8 rounded-lg">
               <h2 className="text-2xl mb-6">Kirim Pesan</h2>
               <form className="space-y-4">
@@ -132,7 +127,6 @@ export function Contact({ onNavigate }: ContactProps) {
               </form>
             </div>
 
-            {/* Map */}
             <div>
               <h2 className="text-2xl mb-6">Lokasi Kami</h2>
               <div className="bg-gray-200 h-[400px] rounded-lg flex items-center justify-center mb-6">
@@ -152,7 +146,6 @@ export function Contact({ onNavigate }: ContactProps) {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Pertanyaan yang Sering Diajukan</h2>

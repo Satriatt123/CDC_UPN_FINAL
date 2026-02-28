@@ -1,7 +1,7 @@
-import { BookOpen, Award, Clock, Users, ArrowLeft } from 'lucide-react'; // <-- 1. Tambahkan ArrowLeft
+import { BookOpen, Award, Clock, Users, ArrowLeft } from 'lucide-react'; 
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Page } from '../../App'; // <-- 2. Tambahkan Page
+import { Page } from '../../App'; 
 
 const trainings = [
   {
@@ -75,17 +75,14 @@ const benefits = [
   'Follow-up konsultasi gratis'
 ];
 
-// 3. Tambahkan interface Props
 interface TrainingProps {
   onNavigate?: (page: Page) => void;
 }
 
-// 4. Terima 'onNavigate' sebagai props
 export function Training({ onNavigate }: TrainingProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       
-      {/* 5. Tambahkan tombol Back Button */}
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -97,7 +94,6 @@ export function Training({ onNavigate }: TrainingProps) {
         </div>
       )}
 
-      {/* Header Section */}
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl mb-4">Pelatihan & Workshop</h1>
@@ -107,7 +103,6 @@ export function Training({ onNavigate }: TrainingProps) {
         </div>
       </section>
 
-      {/* Benefits */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-8">Keuntungan Mengikuti Pelatihan</h2>
@@ -122,7 +117,6 @@ export function Training({ onNavigate }: TrainingProps) {
         </div>
       </section>
 
-      {/* Training List */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="mb-8 flex gap-4 flex-wrap justify-center">
@@ -178,7 +172,6 @@ export function Training({ onNavigate }: TrainingProps) {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-[#0f5c3c] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl mb-4">Butuh Pelatihan Khusus?</h2>

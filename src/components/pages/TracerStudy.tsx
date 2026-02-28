@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// Path disesuaikan untuk lokasi src/components/pages/TracerStudy.tsx
 import { User, Page } from '../../App'; 
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -14,29 +13,24 @@ import {
 } from '../ui/select';
 import { AlertCircle } from 'lucide-react'; 
 
-// Definisikan tipe untuk data formulir
 interface FormData {
   fullName: string;
   graduationYear: string;
   currentStatus: string; 
   
-  // Bidang untuk 'bekerja'
   companyName: string;
   jobTitle: string;
   timeToFirstJob: string;
   salaryRange: string;
   jobRelevance: string;
 
-  // Bidang untuk 'studi'
   universityName: string;
   fieldOfStudy: string;
 
-  // Bidang untuk 'wirausaha'
   businessName: string;
   businessField: string;
 }
 
-// Definisikan props
 interface TracerStudyProps {
   currentUser: User | null;
   onNavigate: (page: Page) => void;
@@ -71,7 +65,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Logika pengiriman data (sama seperti sebelumnya)
     const submissionData = {
       userEmail: currentUser?.identifier,
       fullName: formData.fullName,
@@ -99,13 +92,11 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
 
     console.log('Data Tracer Study Dikirim:', submissionData);
 
-    // Di sini akan ada fetch API ke backend untuk menyimpan data
     alert('Terima kasih! Data Anda telah berhasil dikirim.');
     onNavigate('home'); 
   };
 
 
-  // --- 1. Tampilan jika BELUM LOGIN ---
   if (!currentUser) {
     return (
       <div className="container mx-auto px-4 py-20 flex flex-col items-center justify-center text-center">
@@ -124,7 +115,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
     );
   }
 
-  // --- 2. Tampilan jika SUDAH LOGIN (Formulir Utama) ---
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
       <header className="mb-10 text-center">
@@ -136,7 +126,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
 
       <form onSubmit={handleSubmit} className="space-y-10">
         
-        {/* --- Bagian 1: Data Diri (Grid 2 Kolom Konsisten) --- */}
         <fieldset className="space-y-6 p-6 border rounded-xl shadow-lg">
           <legend className="text-xl font-semibold px-2 text-[#0f5c3c]">Bagian 1: Data Diri</legend>
           
@@ -156,7 +145,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
           </div>
         </fieldset>
 
-        {/* --- Bagian 2: Status Saat Ini --- */}
         <fieldset className="space-y-4 p-6 border rounded-xl shadow-lg">
           <legend className="text-xl font-semibold px-2 text-[#0f5c3c]">Bagian 2: Status Utama Saat Ini</legend>
           <RadioGroup
@@ -183,9 +171,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
           </RadioGroup>
         </fieldset>
 
-        {/* --- Bagian 3: Detail (Kondisional) --- */}
-
-        {/* Tampilan jika memilih "Bekerja" */}
         {formData.currentStatus === 'bekerja' && (
           <fieldset className="space-y-6 p-6 border-2 border-green-400 rounded-xl shadow-xl bg-green-50 animate-in fade-in-50">
             <legend className="text-xl font-semibold px-2 text-green-800">Bagian 3: Detail Pekerjaan</legend>
@@ -228,7 +213,7 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
               </div>
             </div>
             
-            <div className="space-y-2 max-w-md"> {/* Dibatasi agar tidak terlalu lebar */}
+            <div className="space-y-2 max-w-md">
               <Label htmlFor="jobRelevance">Kesesuaian Bidang Pekerjaan dengan Studi</Label>
               <Select onValueChange={(value) => handleValueChange('jobRelevance', value)} value={formData.jobRelevance}>
                 <SelectTrigger><SelectValue placeholder="Pilih tingkat kesesuaian..." /></SelectTrigger>
@@ -242,7 +227,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
           </fieldset>
         )}
 
-        {/* Tampilan jika memilih "Studi Lanjut" */}
         {formData.currentStatus === 'studi' && (
           <fieldset className="space-y-6 p-6 border-2 border-blue-400 rounded-xl shadow-xl bg-blue-50 animate-in fade-in-50">
             <legend className="text-xl font-semibold px-2 text-blue-800">Bagian 3: Detail Studi Lanjut</legend>
@@ -259,7 +243,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
           </fieldset>
         )}
 
-        {/* Tampilan jika memilih "Wirausaha" */}
         {formData.currentStatus === 'wirausaha' && (
           <fieldset className="space-y-6 p-6 border-2 border-amber-400 rounded-xl shadow-xl bg-amber-50 animate-in fade-in-50">
             <legend className="text-xl font-semibold px-2 text-amber-800">Bagian 3: Detail Wirausaha</legend>
@@ -276,7 +259,6 @@ export function TracerStudy({ currentUser, onNavigate }: TracerStudyProps) {
           </fieldset>
         )}
 
-        {/* Tombol Submit */}
         <Button 
           type="submit" 
           size="lg" 

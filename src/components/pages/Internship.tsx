@@ -4,16 +4,14 @@ import { Badge } from '../ui/badge';
 import { Page } from '../../App';
 import { useState, useEffect } from 'react';
 
-// URL Backend Anda
 const API_URL = 'http://localhost:5000';
 
-// Tipe data untuk Internship
 interface Internship {
   id: number;
   company: string;
   position: string;
   location: string;
-  duration?: string; // Kolom ini mungkin belum ada di API, jadi opsional
+  duration?: string;
   field: string;
   requirements: string;
   benefits: string;
@@ -43,26 +41,23 @@ interface InternshipProps {
 }
 
 export function Internship({ onNavigate }: InternshipProps) {
-  // 1. Hapus array 'internships' yang lama
-  
-  // 2. Buat state untuk data dari API
+
   const [internships, setInternships] = useState<Internship[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 3. useEffect untuk mengambil (fetch) data
   useEffect(() => {
     const fetchInternships = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`${API_URL}/api/internships`); // <-- Panggil API
+        const response = await fetch(`${API_URL}/api/internships`);
         if (!response.ok) {
           throw new Error('Gagal mengambil data magang');
         }
         const data: Internship[] = await response.json();
         setInternships(data);
-      } catch (err: any) { // <-- INI PERBAIKANNYA
+      } catch (err: any) { 
         setError(err.message);
       } finally {
         setLoading(false);
@@ -70,12 +65,11 @@ export function Internship({ onNavigate }: InternshipProps) {
     };
 
     fetchInternships();
-  }, []); // [] berarti hanya dijalankan sekali
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
       
-      {/* Tombol Back Button */}
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -87,7 +81,6 @@ export function Internship({ onNavigate }: InternshipProps) {
         </div>
       )}
 
-      {/* Header Section */}
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl mb-4">Program Magang</h1>
@@ -97,7 +90,6 @@ export function Internship({ onNavigate }: InternshipProps) {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Mengapa Magang Penting?</h2>
@@ -127,7 +119,6 @@ export function Internship({ onNavigate }: InternshipProps) {
         </div>
       </section>
 
-      {/* Internship Listings */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Peluang Magang Tersedia</h2>
@@ -140,7 +131,6 @@ export function Internship({ onNavigate }: InternshipProps) {
             <Button variant="ghost">Engineering</Button>
           </div>
 
-          {/* 4. Handle Loading dan Error */}
           {loading && <p className="text-center text-gray-600">Memuat data magang...</p>}
           {error && <p className="text-center text-red-500">{error}</p>}
           
@@ -193,7 +183,6 @@ export function Internship({ onNavigate }: InternshipProps) {
         </div>
       </section>
 
-      {/* Process */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Proses Pendaftaran Magang</h2>
@@ -211,7 +200,6 @@ export function Internship({ onNavigate }: InternshipProps) {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-[#0f5c3c] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl mb-4">Perusahaan Ingin Menawarkan Program Magang?</h2>

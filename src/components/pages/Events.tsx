@@ -3,12 +3,10 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { Page } from '../../App';
-import { useState, useEffect } from 'react'; // <-- Import hook
+import { useState, useEffect } from 'react';
 
-// URL Backend Anda
 const API_URL = 'http://localhost:5000';
 
-// Tipe data untuk Event
 interface Event {
   event_id: number;
   title: string;
@@ -26,14 +24,11 @@ interface EventsProps {
 }
 
 export function Events({ onNavigate }: EventsProps) {
-  // 1. Hapus array 'events' yang lama
   
-  // 2. Buat state untuk data dari API
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  // 3. useEffect untuk mengambil (fetch) data
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -53,12 +48,10 @@ export function Events({ onNavigate }: EventsProps) {
     };
 
     fetchEvents();
-  }, []); // [] berarti hanya dijalankan sekali
 
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* Tombol Back Button */}
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -70,7 +63,6 @@ export function Events({ onNavigate }: EventsProps) {
         </div>
       )}
 
-      {/* Header Section */}
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl mb-4">Acara & Kegiatan</h1>
@@ -80,7 +72,6 @@ export function Events({ onNavigate }: EventsProps) {
         </div>
       </section>
 
-      {/* Events Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="mb-8 flex gap-4 flex-wrap">
@@ -92,7 +83,6 @@ export function Events({ onNavigate }: EventsProps) {
             <Button variant="ghost">Training</Button>
           </div>
 
-          {/* 4. Handle Loading dan Error */}
           {loading && <p className="text-center text-gray-600">Memuat data acara...</p>}
           {error && <p className="text-center text-red-500">{error}</p>}
 

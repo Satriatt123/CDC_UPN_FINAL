@@ -52,7 +52,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* 2. TAMBAHKAN KODE INI KEMBALI */}
       {onNavigate && (
         <div className="container mx-auto px-4 pt-4">
           <button
@@ -64,7 +63,7 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
         </div>
       )}
 
-      {/* Hero Section */}
+
       <section className="bg-[#0f5c3c] text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -75,7 +74,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
               </p>
               <Button 
                 className="bg-amber-400 text-gray-900 hover:bg-amber-500"
-                // onClick={() => onNavigate('contact')} // Anda bisa aktifkan ini nanti
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 Buat Janji Konseling
@@ -92,7 +90,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
         </div>
       </section>
 
-      {/* Services */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Layanan Konseling Kami</h2>
@@ -115,7 +112,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
         </div>
       </section>
 
-      {/* Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Proses Konseling</h2>
@@ -154,7 +150,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
         </div>
       </section>
 
-      {/* Counselors */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center mb-12">Konselor Kami</h2>
@@ -173,7 +168,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-[#0f5c3c] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl mb-4">Siap Memulai Perjalanan Karir Anda?</h2>
@@ -183,7 +177,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
           <div className="flex gap-4 justify-center">
             <Button 
               className="bg-amber-400 text-gray-900 hover:bg-amber-500"
-              // onClick={() => onNavigate('contact')} // Anda bisa aktifkan ini nanti
             >
               <Calendar className="w-4 h-4 mr-2" />
               Buat Janji Sekarang
@@ -191,7 +184,6 @@ export function CareerCounseling({ onNavigate }: CounselingProps) {
             <Button 
               variant="outline" 
               className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f5c3c]"
-              // onClick={() => onNavigate('contact')} // Anda bisa aktifkan ini nanti
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               Chat dengan Kami
